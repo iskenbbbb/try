@@ -16,7 +16,10 @@ async def start(message: types.Message):
                 IButton(text="Наш сайт", url="https://google.com"),
                 IButton(text="Наш инстаграм", url="https://instagram.com"),
             ],
-            [IButton(text="О нас", callback_data="about")],
+            [
+                IButton(text="О нас", callback_data="about"),
+                IButton(text="Подписатся", callback_data="subscribe")
+            ],
         ]
     )
     await message.answer(START_TEXT, reply_markup=kb)
@@ -27,6 +30,14 @@ async def about(callback: types.CallbackQuery):
     await callback.answer()
 
     await callback.message.answer("О нас")
+
+
+@start_router.callback_query(F.data == "subscribe")
+async def about(callback: types.CallbackQuery):
+    await callback.answer()
+
+    await callback.message.answer("О нас")
+
 
 
 @start_router.message(Command("photo"))

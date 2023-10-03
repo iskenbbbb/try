@@ -37,6 +37,18 @@ def create_tables():
             categoryId INTEGER,
             FOREIGN KEY (categoryId) REFERENCES category (id)
         )
+    
+        """
+    )
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS subscribers (
+             INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            year TEXT,
+            categoryId INTEGER,
+            FOREIGN KEY (categoryId) REFERENCES category (id)
+        ) 
         """
     )
     db.commit()
@@ -64,14 +76,7 @@ def populate_tables():
         ('Железный человек', 2008, 9),
         ('Крестный отец', 1972, 10),
         ('Гудфеллас', 1990, 11),
-        ('Лицо со шрамом', 1983, 12),
-        ('В джазе только девушки', 1959, 3),
-        ('Наркос', 2015, 3),
-        ('Город грехов', 2005, 3),
-        ('Семь', 1995, 3),
-        ('Казино', 1995, 3),
-        ('Славные парни', 1990, 3),
-        ('Бешеные псы', 1992, 3)
+        ('Лицо со шрамом', 1983, 12)
         """
     )
     db.commit()

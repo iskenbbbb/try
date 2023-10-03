@@ -57,7 +57,7 @@ async def process_email(message: Message, state: FSMContext):
 
 
 @questions_router.message(F.text, UserData.phone)
-async def process_email(message: Message, state: FSMContext):
+async def number_email(message: Message, state: FSMContext):
     if isinstance(message.text, int):
         await message.answer("Введите правильный номер телефона")
     elif not "+" in message.text:
@@ -76,9 +76,9 @@ async def process_email(message: Message, state: FSMContext):
     data = await state.get_data()
     # save to DB
     await message.answer(
-        "Спасибо. Вот ваши ответы:"
-        f"Имя: {data['name']}, email: {data['email']}, ваш вопрос: {data['question']}"
-        f"Мы вам ответим как только будем свободны",
+        "Спасибо. Вот ваши ответы:\n"
+        f"Имя: {data['name']}, \n email: {data['email']}, \n ваш вопрос: {data['question']}\n"
+        f" Мы вам ответим как только будем свободны",
         reply_markup=ReplyKeyboardRemove()
     )
     await state.clear()
